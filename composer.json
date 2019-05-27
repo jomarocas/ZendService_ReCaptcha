@@ -6,13 +6,13 @@
         "zf2",
         "recaptcha"
     ],
-    "minimum-stability": "*@dev",
+    "minimum-stability": "dev",
     "version": "3.4.0",
     "type": "composer",
     "homepage": "http://packages.zendframework.com/",
     "license": "BSD-3-Clause",
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "ZendService": "library/"
         }
     },
