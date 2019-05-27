@@ -1,5 +1,5 @@
 {
-    "name": "jomarocas/zendservice-recaptcha",
+    "name": "zendframework/zendservice-recaptcha",
     "description": "OOP wrapper for the ReCaptcha web service",
     "type": "library",
     "keywords": [
