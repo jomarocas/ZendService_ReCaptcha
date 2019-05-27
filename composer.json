@@ -15,8 +15,17 @@
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "http://github.com/"
+            "type":"package",
+            "package": {
+              "name": "jomarocas/ZendService_ReCaptcha",
+              "version":"master",
+              "source": {
+                  "url": "https://github.com/jomarocas/ZendService_ReCaptcha.git",
+                  "type": "git",
+                  "reference":"master"
+                }
+            }            
+            
         }
     ],
     "autoload-dev": {
