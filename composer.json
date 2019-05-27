@@ -1,5 +1,5 @@
 {
-    "name": "zendframework/zendservice-recaptcha",
+    "name": "jomarocas/zendservice-recaptcha",
     "description": "OOP wrapper for the ReCaptcha web service",
     "type": "library",
     "keywords": [
@@ -12,14 +12,14 @@
     "homepage": "http://packages.zendframework.com/",
     "license": "BSD-3-Clause",
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "ZendService": "library/"
         }
     },
     "repositories": [
         {
             "type": "composer",
-            "url": "http://packages.zendframework.com/"
+            "url": "http://github.com/"
         }
     ],
     "require": {
