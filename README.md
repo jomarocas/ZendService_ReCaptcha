@@ -1,14 +1,13 @@
 # ZendService\ReCaptcha component
 
-[![Build Status](https://secure.travis-ci.org/zendframework/ZendService_ReCaptcha.svg?branch=master)](https://secure.travis-ci.org/zendframework/ZendService_ReCaptcha)
-[![Coverage Status](https://coveralls.io/repos/github/zendframework/ZendService_ReCaptcha/badge.svg?branch=master)](https://coveralls.io/github/zendframework/ZendService_ReCaptcha?branch=master)
+ONLY FOR RECAPTCHA AND REPONSE, email hidden or others elements no works
 
 ## Install
 
 You can install using [Composer][1]:
 
 ```
-composer require zendframework/zendservice-recaptcha
+composer require jomarocas/zendservice-recaptcha
 ```
 
 ## Documentation
