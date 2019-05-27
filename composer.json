@@ -19,6 +19,14 @@
             "url": "http://packages.zendframework.com/"
         }
     ],
+    "autoload-dev": {
+        "psr-0": {
+            "ZendService": "library/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": ">=5.3.3",
         "zendframework/zend-http": ">=2.0.0",
@@ -27,7 +35,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "3.3.x-dev",
+            "dev-develop": "3.3.x-dev"
         }
     }
 }
