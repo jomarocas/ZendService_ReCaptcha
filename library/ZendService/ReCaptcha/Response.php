@@ -1,11 +1,8 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Service
+ * @see       https://github.com/zendframework/ZendService_ReCaptcha for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/ZendService_ReCaptcha/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendService\ReCaptcha;
@@ -13,11 +10,7 @@ namespace ZendService\ReCaptcha;
 use Zend\Http\Response as HTTPResponse;
 
 /**
- * Zend_Service_ReCaptcha_Response
- *
- * @category   Zend
- * @package    Zend_Service
- * @subpackage ReCaptcha
+ * Model responses from the ReCaptcha and Mailhide APIs.
  */
 class Response
 {
@@ -31,30 +24,30 @@ class Response
     protected $status = null;
 
     /**
-     * Error code
+     * Error codes
      *
-     * The error code if the status is false. The different error codes can be found in the
+     * The error codes if the status is false. The different error codes can be found in the
      * recaptcha API docs.
      *
-     * @var string
+     * @var array
      */
-    protected $errorCode = null;
+    protected $errorCodes = [];
 
     /**
      * Class constructor used to construct a response
      *
      * @param string $status
-     * @param string $errorCode
-     * @param \Zend\Http\Response $httpResponse If this is set the content will override $status and $errorCode
+     * @param array $errorCodes
+     * @param HTTPResponse $httpResponse If this is set the content will override $status and $errorCode
      */
-    public function __construct($status = null, $errorCode = null, HTTPResponse $httpResponse = null)
+    public function __construct($status = null, $errorCodes = [], HTTPResponse $httpResponse = null)
     {
         if ($status !== null) {
             $this->setStatus($status);
         }
 
-        if ($errorCode !== null) {
-            $this->setErrorCode($errorCode);
+        if (! empty($errorCodes)) {
+            $this->setErrorCodes($errorCodes);
         }
 
         if ($httpResponse !== null) {
@@ -65,16 +58,12 @@ class Response
     /**
      * Set the status
      *
-     * @param string $status
-     * @return \ZendService\ReCaptcha\Response
+     * @param bool $status
+     * @return self
      */
     public function setStatus($status)
     {
-        if ($status === 'true') {
-            $this->status = true;
-        } else {
-            $this->status = false;
-        }
+        $this->status = (bool) $status;
 
         return $this;
     }
@@ -82,7 +71,7 @@ class Response
     /**
      * Get the status
      *
-     * @return boolean
+     * @return bool
      */
     public function getStatus()
     {
@@ -92,7 +81,7 @@ class Response
     /**
      * Alias for getStatus()
      *
-     * @return boolean
+     * @return bool
      */
     public function isValid()
     {
@@ -100,49 +89,56 @@ class Response
     }
 
     /**
-     * Set the error code
+     * Set the error codes
      *
-     * @param string $errorCode
-     * @return \ZendService\ReCaptcha\Response
+     * @param array $errorCodes
+     * @return self
      */
-    public function setErrorCode($errorCode)
+    public function setErrorCodes($errorCodes)
     {
-        $this->errorCode = $errorCode;
+        if (is_string($errorCodes)) {
+            $errorCodes = [$errorCodes];
+        }
+
+        $this->errorCodes = $errorCodes;
 
         return $this;
     }
 
     /**
-     * Get the error code
+     * Get the error codes
      *
-     * @return string
+     * @return array
      */
-    public function getErrorCode()
+    public function getErrorCodes()
     {
-        return $this->errorCode;
+        return $this->errorCodes;
     }
 
     /**
      * Populate this instance based on a Zend_Http_Response object
      *
-     * @param \Zend\Http\Response $response
-     * @return \ZendService\ReCaptcha\Response
+     * @param HTTPResponse $response
+     * @return self
      */
     public function setFromHttpResponse(HTTPResponse $response)
     {
         $body = $response->getBody();
 
-        $parts = explode("\n", $body, 2);
+        $parts = json_decode($body, true);
 
-        if (count($parts) !== 2) {
-            $status = 'false';
-            $errorCode = '';
-        } else {
-            list($status, $errorCode) = $parts;
+        $status = false;
+        $errorCodes = [];
+
+        if (is_array($parts) && array_key_exists('success', $parts)) {
+            $status = $parts['success'];
+            if (array_key_exists('error-codes', $parts)) {
+                $errorCodes = $parts['error-codes'];
+            }
         }
 
         $this->setStatus($status);
-        $this->setErrorCode($errorCode);
+        $this->setErrorCodes($errorCodes);
 
         return $this;
     }
