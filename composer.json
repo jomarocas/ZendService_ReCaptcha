@@ -16,7 +16,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://packages.zendframework.com/"
+            "url": "http://github.com/"
         }
     ],
     "autoload-dev": {
