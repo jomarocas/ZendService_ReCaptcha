@@ -6,6 +6,8 @@
         "zf2",
         "recaptcha"
     ],
+    "version": "3.4.0",
+    "type": "composer",
     "homepage": "http://packages.zendframework.com/",
     "license": "BSD-3-Clause",
     "autoload": {
