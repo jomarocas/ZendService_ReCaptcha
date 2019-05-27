@@ -6,6 +6,7 @@
         "zf2",
         "recaptcha"
     ],
+    "minimum-stability": "stable",
     "version": "3.4.0",
     "type": "composer",
     "homepage": "http://packages.zendframework.com/",
