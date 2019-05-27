@@ -25,11 +25,10 @@
                   "reference":"master"
                 }
             }            
-            
         }
     ],
-    "autoload-dev": {
-        "psr-0": {
+    "autoload": {
+        "psr-4": {
             "ZendService": "library/"
         }
     },
