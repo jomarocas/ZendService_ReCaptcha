@@ -1,6 +1,6 @@
 # ZendService\ReCaptcha component
 
-ONLY FOR RECAPTCHA AND REPONSE, email hidden or others elements no works
+ONLY FOR RECAPTCHA AND RESPONSE, email hidden or others elements no works
 
 ## Install
 
