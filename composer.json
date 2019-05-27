@@ -13,13 +13,13 @@
     "license": "BSD-3-Clause",
     "autoload": {
         "psr-0": {
-            "ZendService": "library/"
+            "ZendService": "library"
         }
     },
     "repositories": [
         {
             "type": "composer",
-            "url": "http://github.com/jomarocas/zendservice-recaptcha/"
+            "url": "http://packagist.org/"
         }
     ],
     "require": {
